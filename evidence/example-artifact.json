@@ -1,0 +1,117 @@
+{
+  "schema_version": "1.0",
+  "capability_id": "member-savings-lookup",
+  "name": "Look up member savings balance",
+  "description": "Look up member {{member_id}} and read the current savings balance",
+  "artifact_version": "1.0.0",
+  "approval": "draft",
+  "target_url": "http://127.0.0.1:8000/legacy",
+  "allowed_route_pattern": "/legacy(?:/.*)?",
+  "created_at": "2026-09-27T12:22:42.***75Z",
+  "inputs": [
+    {
+      "name": "member_id",
+      "type": "string",
+      "description": "Runtime member id",
+      "required": true,
+      "sensitive": true,
+      "pattern": "\\d{5}"
+    }
+  ],
+  "outputs": [
+    {
+      "name": "current_savings_balance",
+      "type": "string",
+      "description": "Extracted current savings balance value",
+      "sensitive": true
+    }
+  ],
+  "steps": [
+    {
+      "id": "step-1",
+      "action": "navigate",
+      "description": "Open the caller-provided target",
+      "locator": null,
+      "value": "http://127.0.0.1:8000/legacy",
+      "output": null,
+      "risk": "safe",
+      "timeout_ms": 5000,
+      "retries": 1
+    },
+    {
+      "id": "step-2",
+      "action": "fill",
+      "description": "Fill in the member number textbox with '{{member_id}}' to look up the member.",
+      "locator": {
+        "strategy": "label",
+        "value": "Member number",
+        "role": "textbox",
+        "exact": true,
+        "rationale": "The textbox is labeled 'Member number', so we use the role and label locator to target it precisely."
+      },
+      "value": "{{member_id}}",
+      "output": null,
+      "risk": "safe",
+      "timeout_ms": 5000,
+      "retries": 1
+    },
+    {
+      "id": "step-4",
+      "action": "click",
+      "description": "Click the 'Find member' button using text locator as clicking by label role failed.",
+      "locator": {
+        "strategy": "text",
+        "value": "Find member",
+        "role": "button",
+        "exact": true,
+        "rationale": "The 'Find member' button is identified by its text; since clicking by label+role failed, clicking by exact text is the next best option."
+      },
+      "value": null,
+      "output": null,
+      "risk": "safe",
+      "timeout_ms": 5000,
+      "retries": 1
+    },
+    {
+      "id": "step-7",
+      "action": "extract",
+      "description": "Extract the current savings balance value",
+      "locator": {
+        "strategy": "css",
+        "value": "table[aria-label='Member account summary'] tr:has(th:has-text('Savings balance')) td",
+        "role": null,
+        "exact": true,
+        "rationale": "Since targeting the cell or row by role or text times out, selecting the table row with a header 'Savings balance' and then its adjacent cell by CSS offers a structurally precise and performant way to extract the balance."
+      },
+      "value": null,
+      "output": "current_savings_balance",
+      "risk": "safe",
+      "timeout_ms": 5000,
+      "retries": 1
+    }
+  ],
+  "checkpoint": {
+    "locator": {
+      "strategy": "role",
+      "value": "Member Detail",
+      "role": "heading",
+      "exact": true,
+      "rationale": "Stable page heading replaces a runtime-data checkpoint."
+    },
+    "expected_text": null,
+    "description": "The member detail view is visible"
+  },
+  "business_outcomes": [
+    {
+      "code": "member_not_found",
+      "locator": {
+        "strategy": "text",
+        "value": "No member found",
+        "role": null,
+        "exact": true,
+        "rationale": "The server-rendered outcome has stable, user-visible copy."
+      },
+      "message": "No member matched the supplied member number"
+    }
+  ]
+}

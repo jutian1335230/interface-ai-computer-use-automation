@@ -1,0 +1,10 @@
+{"timestamp": "2026-09-27T12:22:54.***69+00:00", "event": "replay_started", "capability_id": "member-savings-lookup", "artifact_version": "1.0.0"}
+{"timestamp": "2026-09-27T12:22:54.***89+00:00", "event": "step_started", "step_id": "step-1", "action": "navigate", "description": "Open the caller-provided target"}
+{"timestamp": "2026-09-27T12:22:55.***21+00:00", "event": "step_completed", "step_id": "step-1"}
+{"timestamp": "2026-09-27T12:22:55.***18+00:00", "event": "step_started", "step_id": "step-2", "action": "fill", "description": "Fill in the member number textbox with '{{member_id}}' to look up the member."}
+{"timestamp": "2026-09-27T12:22:55.***31+00:00", "event": "step_completed", "step_id": "step-2"}
+{"timestamp": "2026-09-27T12:22:55.***09+00:00", "event": "step_started", "step_id": "step-4", "action": "click", "description": "Click the 'Find member' button using text locator as clicking by label role failed."}
+{"timestamp": "2026-09-27T12:22:55.***75+00:00", "event": "step_completed", "step_id": "step-4"}
+{"timestamp": "2026-09-27T12:22:55.***68+00:00", "event": "step_started", "step_id": "step-7", "action": "extract", "description": "Extract the current savings balance value"}
+{"timestamp": "2026-09-27T12:22:55.***61+00:00", "event": "step_completed", "step_id": "step-7"}
+{"timestamp": "2026-09-27T12:22:55.***04+00:00", "event": "replay_completed", "status": "success", "outputs": {"current_savings_balance": "[REDACTED]"}}

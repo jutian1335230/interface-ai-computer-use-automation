@@ -1,0 +1,10 @@
+.env
+.venv/
+Assignment A*.pdf
+__pycache__/
+*.py[cod]
+.pytest_cache/
+*.egg-info/
+dist/
+build/
+evidence/interventions/*.resume.json

@@ -1,0 +1,8 @@
+{"timestamp": "2026-09-27T12:23:16.***53+00:00", "event": "replay_started", "capability_id": "member-savings-lookup", "artifact_version": "1.0.0"}
+{"timestamp": "2026-09-27T12:23:16.***76+00:00", "event": "step_started", "step_id": "step-1", "action": "navigate", "description": "Open the caller-provided target"}
+{"timestamp": "2026-09-27T12:23:16.***05+00:00", "event": "step_completed", "step_id": "step-1"}
+{"timestamp": "2026-09-27T12:23:16.***85+00:00", "event": "step_started", "step_id": "step-2", "action": "fill", "description": "Fill in the member number textbox with '{{member_id}}' to look up the member."}
+{"timestamp": "2026-09-27T12:23:16.***71+00:00", "event": "step_completed", "step_id": "step-2"}
+{"timestamp": "2026-09-27T12:23:16.***41+00:00", "event": "step_started", "step_id": "step-4", "action": "click", "description": "Click the 'Find member' button using text locator as clicking by label role failed."}
+{"timestamp": "2026-09-27T12:23:16.***63+00:00", "event": "step_completed", "step_id": "step-4"}
+{"timestamp": "2026-09-27T12:23:16.***70+00:00", "event": "business_outcome", "code": "member_not_found", "step_id": "step-4"}
